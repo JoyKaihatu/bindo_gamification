@@ -319,74 +319,173 @@ const PENGATURAN = {
   jedaPenjelasanSaatSalah: true // true: permainan berhenti sejenak untuk menampilkan penjelasan
 };
 
+// const LEVEL = [
+//   {
+//     nama: "Ejaan baku",
+//     petunjuk: "Pilih kata yang baku!",
+//     tema: "pagi",
+//     gerbangPerLevel: 8,         // jumlah gerbang sebelum naik level
+//     pengaliKecepatan: 1.0,
+//     soal: [
+//       { benar: "Apotek",     salah: ["Apotik"],              penjelasan: "Bentuk baku: apotek. Apotik tidak baku." },
+//       { benar: "Izin",       salah: ["Ijin"],                penjelasan: "Bentuk baku: izin. Ijin tidak baku." },
+//       { benar: "Praktik",    salah: ["Praktek"],             penjelasan: "Bentuk baku: praktik. Praktek tidak baku." },
+//       { benar: "Kualitas",   salah: ["Kwalitas"],            penjelasan: "Kualitas ditulis dengan ku, bukan kw." },
+//       { benar: "Analisis",   salah: ["Analisa"],             penjelasan: "Bentuk baku: analisis. Analisa tidak baku." },
+//       { benar: "Risiko",     salah: ["Resiko"],              penjelasan: "Bentuk baku: risiko. Resiko tidak baku." },
+//       { benar: "Nasihat",    salah: ["Nasehat"],             penjelasan: "Bentuk baku: nasihat. Nasehat tidak baku." },
+//       { benar: "Jadwal",     salah: ["Jadual"],              penjelasan: "Bentuk baku: jadwal." },
+//       { benar: "Objek",      salah: ["Obyek"],               penjelasan: "Bentuk baku: objek. Obyek tidak baku." },
+//       { benar: "Silakan",    salah: ["Silahkan"],            penjelasan: "Bentuk baku: silakan, bukan silahkan." },
+//       { benar: "Aktivitas",  salah: ["Aktifitas"],           penjelasan: "Bentuk baku: aktivitas. Aktifitas tidak baku." },
+//       { benar: "Sistem",     salah: ["Sistim"],              penjelasan: "Bentuk baku: sistem." },
+//       { benar: "Teknik",     salah: ["Tehnik", "Tekhnik"],   penjelasan: "Bentuk baku: teknik, tanpa huruf h." },
+//       { benar: "Telepon",    salah: ["Telpon", "Telefon"],   penjelasan: "Bentuk baku: telepon." }
+//     ]
+//   },
+//   {
+//     nama: "Imbuhan dan penulisan",
+//     petunjuk: "Mana penulisan yang benar?",
+//     tema: "senja",
+//     gerbangPerLevel: 8,
+//     pengaliKecepatan: 1.1,
+//     soal: [
+//       { benar: "Mengubah",       salah: ["Merubah"],         penjelasan: "Kata dasarnya ubah, jadi mengubah. Merubah berasal dari kata rubah." },
+//       { benar: "Memengaruhi",    salah: ["Mempengaruhi"],    penjelasan: "Huruf p pada kata dasar pengaruh luluh: memengaruhi." },
+//       { benar: "Mempunyai",      salah: ["Memunyai"],        penjelasan: "Bentuk yang benar: mempunyai." },
+//       { benar: "Menyukseskan",   salah: ["Mensukseskan"],    penjelasan: "Huruf s pada kata dasar sukses luluh menjadi ny: menyukseskan." },
+//       { benar: "Memproduksi",    salah: ["Memroduksi"],      penjelasan: "Huruf p tidak luluh pada kata yang diawali gugus konsonan seperti pr: memproduksi." },
+//       { benar: "Di mana",        salah: ["Dimana"],          penjelasan: "Sebagai kata tanya, di mana ditulis terpisah karena di adalah kata depan." },
+//       { benar: "Ke mana",        salah: ["Kemana"],          penjelasan: "Sebagai kata tanya, ke mana ditulis terpisah karena ke adalah kata depan." },
+//       { benar: "Diberikan",      salah: ["Di berikan"],      penjelasan: "Di- pada kata kerja pasif adalah awalan dan ditulis serangkai." },
+//       { benar: "Tanggung jawab", salah: ["Tanggungjawab"],   penjelasan: "Gabungan kata (kata majemuk) ditulis terpisah: tanggung jawab." },
+//       { benar: "Terima kasih",   salah: ["Terimakasih"],     penjelasan: "Ditulis terpisah: terima kasih." },
+//       { benar: "Meskipun",       salah: ["Meski pun"],       penjelasan: "Meskipun ditulis serangkai." },
+//       { benar: "Anak-anak",      salah: ["Anak2", "Anak anak"], penjelasan: "Kata ulang ditulis dengan tanda hubung, bukan angka 2." },
+//       { benar: "Sehari-hari",    salah: ["Sehari hari"],     penjelasan: "Kata ulang ditulis dengan tanda hubung: sehari-hari." }
+//     ]
+//   },
+//   {
+//     nama: "Padanan kata asing",
+//     petunjuk: "Pilih padanan bahasa Indonesia!",
+//     tema: "malam",
+//     gerbangPerLevel: 8,
+//     pengaliKecepatan: 1.2,
+//     soal: [
+//       { soal: 'Padanan kata "online":',     benar: "Daring",         salah: ["Online", "Luring"],   penjelasan: "Daring berarti dalam jaringan, padanan online." },
+//       { soal: 'Padanan kata "offline":',    benar: "Luring",         salah: ["Offline", "Daring"],  penjelasan: "Luring berarti luar jaringan, padanan offline." },
+//       { soal: 'Padanan kata "download":',   benar: "Unduh",          salah: ["Download", "Unggah"], penjelasan: "Unduh adalah padanan download. Kebalikannya: unggah." },
+//       { soal: 'Padanan kata "upload":',     benar: "Unggah",         salah: ["Upload", "Unduh"],    penjelasan: "Unggah adalah padanan upload." },
+//       { soal: 'Padanan kata "link":',       benar: "Tautan",         salah: ["Link"],               penjelasan: "Tautan adalah padanan link." },
+//       { soal: 'Padanan kata "email":',      benar: "Surel",          salah: ["Email"],              penjelasan: "Surel (surat elektronik) adalah padanan email." },
+//       { soal: 'Padanan kata "gadget":',     benar: "Gawai",          salah: ["Gadget"],             penjelasan: "Gawai adalah padanan gadget." },
+//       { soal: 'Padanan kata "server":',     benar: "Peladen",        salah: ["Server"],             penjelasan: "Peladen adalah padanan server." },
+//       { soal: 'Padanan kata "password":',   benar: "Kata sandi",     salah: ["Password"],           penjelasan: "Kata sandi adalah padanan password." },
+//       { soal: 'Padanan kata "scan":',       benar: "Pindai",         salah: ["Scan"],               penjelasan: "Pindai adalah padanan scan." },
+//       { soal: 'Padanan kata "edit":',       benar: "Sunting",        salah: ["Edit"],               penjelasan: "Sunting adalah padanan edit." },
+//       { soal: 'Padanan kata "screenshot":', benar: "Tangkapan layar", salah: ["Screenshot"],        penjelasan: "Tangkapan layar adalah padanan screenshot." }
+//     ]
+//   }
+// ];
 const LEVEL = [
   {
-    nama: "Ejaan baku",
+    nama: "Ejaan Baku",
     petunjuk: "Pilih kata yang baku!",
     tema: "pagi",
-    gerbangPerLevel: 8,         // jumlah gerbang sebelum naik level
+    gerbangPerLevel: 8, // Jumlah gerbang sebelum naik level
     pengaliKecepatan: 1.0,
     soal: [
-      { benar: "Apotek",     salah: ["Apotik"],              penjelasan: "Bentuk baku: apotek. Apotik tidak baku." },
-      { benar: "Izin",       salah: ["Ijin"],                penjelasan: "Bentuk baku: izin. Ijin tidak baku." },
-      { benar: "Praktik",    salah: ["Praktek"],             penjelasan: "Bentuk baku: praktik. Praktek tidak baku." },
-      { benar: "Kualitas",   salah: ["Kwalitas"],            penjelasan: "Kualitas ditulis dengan ku, bukan kw." },
-      { benar: "Analisis",   salah: ["Analisa"],             penjelasan: "Bentuk baku: analisis. Analisa tidak baku." },
-      { benar: "Risiko",     salah: ["Resiko"],              penjelasan: "Bentuk baku: risiko. Resiko tidak baku." },
-      { benar: "Nasihat",    salah: ["Nasehat"],             penjelasan: "Bentuk baku: nasihat. Nasehat tidak baku." },
-      { benar: "Jadwal",     salah: ["Jadual"],              penjelasan: "Bentuk baku: jadwal." },
-      { benar: "Objek",      salah: ["Obyek"],               penjelasan: "Bentuk baku: objek. Obyek tidak baku." },
-      { benar: "Silakan",    salah: ["Silahkan"],            penjelasan: "Bentuk baku: silakan, bukan silahkan." },
-      { benar: "Aktivitas",  salah: ["Aktifitas"],           penjelasan: "Bentuk baku: aktivitas. Aktifitas tidak baku." },
-      { benar: "Sistem",     salah: ["Sistim"],              penjelasan: "Bentuk baku: sistem." },
-      { benar: "Teknik",     salah: ["Tehnik", "Tekhnik"],   penjelasan: "Bentuk baku: teknik, tanpa huruf h." },
-      { benar: "Telepon",    salah: ["Telpon", "Telefon"],   penjelasan: "Bentuk baku: telepon." }
+      { benar: "Apotek", salah: ["Apotik", "Apotec"], penjelasan: "Bentuk baku yang benar adalah apotek (serapan apotheek)." },
+      { benar: "Praktik", salah: ["Praktek", "Praktis"], penjelasan: "Kata dasar baku adalah praktik (kata turunan: praktikum)." },
+      { benar: "Izin", salah: ["Ijin", "Isin"], penjelasan: "Penyerapan bahasa Arab yang baku menggunakan huruf Z." },
+      { benar: "Kualitas", salah: ["Kwalitas", "Kwalitet"], penjelasan: "Kombinasi qu/kw diserap menjadi ku." },
+      { benar: "Risiko", salah: ["Resiko", "Riko"], penjelasan: "Berasal dari kata risico, vokal utama adalah i." },
+      { benar: "Antre", salah: ["Antri", "Antree"], penjelasan: "Bentuk kata dasar baku menurut KBBI adalah antre." },
+      { benar: "Analisis", salah: ["Analisa", "Analize"], penjelasan: "Akhiran -ysis diserap menjadi -sis." },
+      { benar: "Napas", salah: ["Nafas", "Lapas"], penjelasan: "Penyerapan kata baku menggunakan huruf P." },
+      { benar: "Saksama", salah: ["Seksama", "Saksame"], penjelasan: "Vokal pertama yang baku adalah A (saksama)." },
+      { benar: "Nasihat", salah: ["Nasehat", "Nasikat"], penjelasan: "Penyerapan dari kata Arab naṣīḥah menggunakan I." }
     ]
   },
   {
-    nama: "Imbuhan dan penulisan",
+    nama: "Imbuhan dan Penulisan",
     petunjuk: "Mana penulisan yang benar?",
-    tema: "senja",
+    tema: "pagi",
     gerbangPerLevel: 8,
     pengaliKecepatan: 1.1,
     soal: [
-      { benar: "Mengubah",       salah: ["Merubah"],         penjelasan: "Kata dasarnya ubah, jadi mengubah. Merubah berasal dari kata rubah." },
-      { benar: "Memengaruhi",    salah: ["Mempengaruhi"],    penjelasan: "Huruf p pada kata dasar pengaruh luluh: memengaruhi." },
-      { benar: "Mempunyai",      salah: ["Memunyai"],        penjelasan: "Bentuk yang benar: mempunyai." },
-      { benar: "Menyukseskan",   salah: ["Mensukseskan"],    penjelasan: "Huruf s pada kata dasar sukses luluh menjadi ny: menyukseskan." },
-      { benar: "Memproduksi",    salah: ["Memroduksi"],      penjelasan: "Huruf p tidak luluh pada kata yang diawali gugus konsonan seperti pr: memproduksi." },
-      { benar: "Di mana",        salah: ["Dimana"],          penjelasan: "Sebagai kata tanya, di mana ditulis terpisah karena di adalah kata depan." },
-      { benar: "Ke mana",        salah: ["Kemana"],          penjelasan: "Sebagai kata tanya, ke mana ditulis terpisah karena ke adalah kata depan." },
-      { benar: "Diberikan",      salah: ["Di berikan"],      penjelasan: "Di- pada kata kerja pasif adalah awalan dan ditulis serangkai." },
-      { benar: "Tanggung jawab", salah: ["Tanggungjawab"],   penjelasan: "Gabungan kata (kata majemuk) ditulis terpisah: tanggung jawab." },
-      { benar: "Terima kasih",   salah: ["Terimakasih"],     penjelasan: "Ditulis terpisah: terima kasih." },
-      { benar: "Meskipun",       salah: ["Meski pun"],       penjelasan: "Meskipun ditulis serangkai." },
-      { benar: "Anak-anak",      salah: ["Anak2", "Anak anak"], penjelasan: "Kata ulang ditulis dengan tanda hubung, bukan angka 2." },
-      { benar: "Sehari-hari",    salah: ["Sehari hari"],     penjelasan: "Kata ulang ditulis dengan tanda hubung: sehari-hari." }
+      { benar: "Di mana", salah: ["Dimana", "Di-mana"], penjelasan: "'Di' sebagai penunjuk tempat wajib ditulis terpisah." },
+      { benar: "Diubah", salah: ["Dirubah", "Di rubah"], penjelasan: "Kata dasar 'ubah' diberi awalan di-, bukan di-r-." },
+      { benar: "Ke depan", salah: ["Kedepan", "Ke-depan"], penjelasan: "'Ke' penunjuk arah/lokasi ditulis terpisah." },
+      { benar: "Di antaranya", salah: ["Diantaranya", "Di-antaranya"], penjelasan: "Menunjukkan posisi/pilihan, penulisan wajib dipisah." },
+      { benar: "Kemari", salah: ["Ke mari", "Ke-mari"], penjelasan: "Kata 'kemari' termasuk pengecualian yang penulisannya digabung." },
+      { benar: "Mengubah", salah: ["Merubah", "Meubah"], penjelasan: "Imbuhan me- + ubah meluluh menjadi mengubah." },
+      { benar: "Memengaruhi", salah: ["Mempengaruhi", "Mengaruhi"], penjelasan: "Huruf P pada kata dasar 'pengaruh' luluh setelah imbuhan me-." },
+      { benar: "Mencolok", salah: ["Menyolok", "Mencolock"], penjelasan: "Huruf C pada kata dasar 'colok' tidak luluh." },
+      { benar: "Mengkritik", salah: ["Mengritik", "Menkritik"], penjelasan: "Kluster konsonan (kr) tidak luluh saat diberi imbuhan." },
+      { benar: "Menerjemahkan", salah: ["Menterjemahkan", "Menerjemah"], penjelasan: "Huruf T pada kata dasar 'terjemah' luluh menjadi N." }
     ]
   },
   {
-    nama: "Padanan kata asing",
-    petunjuk: "Pilih padanan bahasa Indonesia!",
-    tema: "malam",
+    nama: "Padanan Kata Asing",
+    petunjuk: "Pilih padanan Bahasa Indonesia!",
+    tema: "senja",
     gerbangPerLevel: 8,
     pengaliKecepatan: 1.2,
     soal: [
-      { soal: 'Padanan kata "online":',     benar: "Daring",         salah: ["Online", "Luring"],   penjelasan: "Daring berarti dalam jaringan, padanan online." },
-      { soal: 'Padanan kata "offline":',    benar: "Luring",         salah: ["Offline", "Daring"],  penjelasan: "Luring berarti luar jaringan, padanan offline." },
-      { soal: 'Padanan kata "download":',   benar: "Unduh",          salah: ["Download", "Unggah"], penjelasan: "Unduh adalah padanan download. Kebalikannya: unggah." },
-      { soal: 'Padanan kata "upload":',     benar: "Unggah",         salah: ["Upload", "Unduh"],    penjelasan: "Unggah adalah padanan upload." },
-      { soal: 'Padanan kata "link":',       benar: "Tautan",         salah: ["Link"],               penjelasan: "Tautan adalah padanan link." },
-      { soal: 'Padanan kata "email":',      benar: "Surel",          salah: ["Email"],              penjelasan: "Surel (surat elektronik) adalah padanan email." },
-      { soal: 'Padanan kata "gadget":',     benar: "Gawai",          salah: ["Gadget"],             penjelasan: "Gawai adalah padanan gadget." },
-      { soal: 'Padanan kata "server":',     benar: "Peladen",        salah: ["Server"],             penjelasan: "Peladen adalah padanan server." },
-      { soal: 'Padanan kata "password":',   benar: "Kata sandi",     salah: ["Password"],           penjelasan: "Kata sandi adalah padanan password." },
-      { soal: 'Padanan kata "scan":',       benar: "Pindai",         salah: ["Scan"],               penjelasan: "Pindai adalah padanan scan." },
-      { soal: 'Padanan kata "edit":',       benar: "Sunting",        salah: ["Edit"],               penjelasan: "Sunting adalah padanan edit." },
-      { soal: 'Padanan kata "screenshot":', benar: "Tangkapan layar", salah: ["Screenshot"],        penjelasan: "Tangkapan layar adalah padanan screenshot." }
+      { soal: 'Padanan kata "online":', benar: "Daring", salah: ["Luring", "Layanan"], penjelasan: "Daring berarti Dalam Jaringan, padanan dari online." },
+      { soal: 'Padanan kata "offline":', benar: "Luring", salah: ["Daring", "Samping"], penjelasan: "Luring berarti Luar Jaringan, padanan dari offline." },
+      { soal: 'Padanan kata "download":', benar: "Unduh", salah: ["Unggah", "Gunggung"], penjelasan: "Unduh adalah padanan resmi dari download." },
+      { soal: 'Padanan kata "upload":', benar: "Unggah", salah: ["Unduh", "Umpan"], penjelasan: "Unggah adalah padanan resmi dari upload." },
+      { soal: 'Padanan kata "screenshot":', benar: "Tangkapan layar", salah: ["Cetak layar", "Potongan layar"], penjelasan: "Padanan resmi screenshot adalah tangkapan layar." },
+      { soal: 'Padanan kata "mouse":', benar: "Tetikus", salah: ["Tikusan", "Pematang"], penjelasan: "Padanan resmi mouse komputer adalah tetikus." },
+      { soal: 'Padanan kata "selfie":', benar: "Swafoto", salah: ["Kamera foto", "Foto diri"], penjelasan: "Swafoto adalah padanan resmi dari selfie." },
+      { soal: 'Padanan kata "typo":', benar: "Saltik", salah: ["Tersilit", "Salah ketik"], penjelasan: "Saltik adalah singkatan dari Salah Tik." },
+      { soal: 'Padanan kata "microphone":', benar: "Pelantang", salah: ["Pengeras", "Penyaring"], penjelasan: "Pelantang adalah padanan resmi dari microphone." },
+      { soal: 'Padanan kata "contact person":', benar: "Narahubung", salah: ["Pusat kontak", "Narasumber"], penjelasan: "Narahubung adalah padanan resmi dari contact person." }
+    ]
+  },
+  {
+    nama: "Makna & Leksikal",
+    petunjuk: "Pilih kata yang paling tepat!",
+    tema: "senja",
+    gerbangPerLevel: 8,
+    pengaliKecepatan: 1.3,
+    soal: [
+      { soal: 'Sinonim kata "Skeptis":', benar: "Ragu-ragu", salah: ["Yakin", "Pasrah"], penjelasan: "Skeptis berarti kurang percaya atau ragu-ragu." },
+      { soal: 'Antonim kata "Apatis":', benar: "Peduli", salah: ["Acuh", "Dingin"], penjelasan: "Apatis berarti acuh/tidak peduli, lawan katanya adalah peduli." },
+      { soal: 'Sinonim kata "Prinsipil":', benar: "Mendasar", salah: ["Sampingan", "Khusus"], penjelasan: "Prinsipil berarti bersifat pokok atau mendasar." },
+      { soal: 'Makna kata "Mualim":', benar: "Penunjuk jalan", salah: ["Pemimpin", "Prajurit"], penjelasan: "Mualim adalah penunjuk jalan atau mualim kapal." },
+      { soal: 'Sinonim kata "Insentif":', benar: "Bonus", salah: ["Potongan", "Denda"], penjelasan: "Insentif adalah tambahan penghasilan atau bonus." },
+      { soal: 'Antonim kata "Sederhana":', benar: "Mewah", salah: ["Canggih", "Rumit"], penjelasan: "Lawan kata dari sederhana adalah mewah." },
+      { soal: 'Sinonim kata "Hasil":', benar: "Produk", salah: ["Dampak", "Proses"], penjelasan: "Salah satu sinonim dari hasil adalah produk." },
+      { soal: 'Antonim kata "Pengorbanan":', benar: "Keuntungan", salah: ["Kerugian", "Usaha"], penjelasan: "Lawan kata pengorbanan dalam konteks hasil adalah keuntungan." },
+      { soal: 'Makna kata "Prasangka":', benar: "Dugaan awal", salah: ["Fakta", "Tuduhan"], penjelasan: "Prasangka adalah pendapat/dugaan sebelum mengetahui fakta." },
+      { soal: 'Sinonim kata "Realistis":', benar: "Sesuai fakta", salah: ["Khayalan", "Rencana"], penjelasan: "Realistis berarti bersifat nyata atau sesuai fakta." }
+    ]
+  },
+  {
+    nama: "Ungkapan & Peribahasa",
+    petunjuk: "Lengkapi potongan ungkapan ini!",
+    tema: "malam",
+    gerbangPerLevel: 8,
+    pengaliKecepatan: 1.4,
+    soal: [
+      { soal: 'Bekerja keras = Membanting ...', benar: "Tulang", salah: ["Harga", "Pintu"], penjelasan: "Ungkapan bekerja keras adalah 'Membanting tulang'." },
+      { soal: 'Gemar membaca = Kutu ...', benar: "Buku", salah: ["Kasur", "Beras"], penjelasan: "Ungkapan untuk orang yang gemar membaca adalah 'Kutu buku'." },
+      { soal: 'Keluar dari mulut harimau, masuk ke mulut ...', benar: "Buaya", salah: ["Singa", "Ular"], penjelasan: "Peribahasa yang benar menggunakan kata 'Buaya'." },
+      { soal: 'Ada udang di balik ...', benar: "Batu", salah: ["Bakwan", "Piring"], penjelasan: "Peribahasa yang benar adalah 'Ada udang di balik batu'." },
+      { soal: 'Besar pasak daripada ...', benar: "Tiang", salah: ["Atap", "Rumah"], penjelasan: "Peribahasa yang benar adalah 'Besar pasak daripada tiang'." },
+      { soal: 'Bagai air di atas daun ...', benar: "Talas", salah: ["Pisang", "Sawi"], penjelasan: "Peribahasa yang benar adalah 'Bagai air di atas daun talas'." },
+      { soal: 'Tong kosong nyaring ...', benar: "Bunyinya", salah: ["Suaranya", "Bentuknya"], penjelasan: "Peribahasa yang benar adalah 'Tong kosong nyaring bunyinya'." },
+      { soal: 'Sambil menyelam minum ...', benar: "Air", salah: ["Susu", "Kopi"], penjelasan: "Peribahasa yang benar adalah 'Sambil menyelam minum air'." },
+      { soal: 'Gugur satu tumbuh ...', benar: "Seribu", salah: ["Ratusan", "Dua"], penjelasan: "Ungkapan yang benar adalah 'Gugur satu tumbuh seribu'." },
+      { soal: 'Suka memberi = Murah ...', benar: "Hati", salah: ["Tangan", "Senyum"], penjelasan: "Ungkapan untuk orang yang suka memberi adalah 'Murah hati'." }
     ]
   }
 ];
+
+
 </script>
 
 <script>
